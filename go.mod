@@ -1,4 +1,4 @@
-module github.com/hypnoglow/helm-s3
+module github.com/hex-inc/helm-s3
 
 go 1.12
 

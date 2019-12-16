@@ -31,7 +31,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name="helm-s3" \
       org.label-schema.description="The Helm plugin that provides S3 protocol support and allows to use AWS S3 as a chart repository." \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="https://github.com/hypnoglow/helm-s3" \
+      org.label-schema.vcs-url="https://github.com/hex-inc/helm-s3" \
       org.label-schema.version=$PLUGIN_VERSION \
       org.label-schema.schema-version="1.0"
 

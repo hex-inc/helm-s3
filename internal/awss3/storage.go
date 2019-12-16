@@ -16,7 +16,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 	"github.com/pkg/errors"
 
-	"github.com/hypnoglow/helm-s3/internal/helmutil"
+	"github.com/hex-inc/helm-s3/internal/helmutil"
 )
 
 const (

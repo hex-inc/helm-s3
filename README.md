@@ -1,8 +1,8 @@
 # helm-s3
 
-[![CircleCI](https://circleci.com/gh/hypnoglow/helm-s3/tree/master.svg?style=shield)](https://circleci.com/gh/hypnoglow/helm-s3/tree/master)
+[![CircleCI](https://circleci.com/gh/hex-inc/helm-s3/tree/master.svg?style=shield)](https://circleci.com/gh/hex-inc/helm-s3/tree/master)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
-[![GitHub release](https://img.shields.io/github/release/hypnoglow/helm-s3.svg)](https://github.com/hypnoglow/helm-s3/releases)
+[![GitHub release](https://img.shields.io/github/release/hex-inc/helm-s3.svg)](https://github.com/hex-inc/helm-s3/releases)
 
 The Helm plugin that provides s3 protocol support.
 
@@ -16,25 +16,25 @@ Also, this plugin will continue supporting Helm v2 until its sunset.
 
 The installation itself is simple as:
 
-    $ helm plugin install https://github.com/hypnoglow/helm-s3.git
+    $ helm plugin install https://github.com/hex-inc/helm-s3.git
 
 You can install a specific release version:
 
-    $ helm plugin install https://github.com/hypnoglow/helm-s3.git --version 0.7.0
+    $ helm plugin install https://github.com/hex-inc/helm-s3.git --version 0.7.0
 
 To use the plugin, you do not need any special dependencies. The installer will
-download versioned release with prebuilt binary from [github releases](https://github.com/hypnoglow/helm-s3/releases).
+download versioned release with prebuilt binary from [github releases](https://github.com/hex-inc/helm-s3/releases).
 However, if you want to build the plugin from source, or you want to contribute
 to the plugin, please see [these instructions](.github/CONTRIBUTING.md).
 
 ### Docker Images
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/hypnoglow/helm-s3)](https://hub.docker.com/r/hypnoglow/helm-s3)
+[![Docker Pulls](https://img.shields.io/docker/pulls/hex-inc/helm-s3)](https://hub.docker.com/r/hex-inc/helm-s3)
 
 The plugin is also distributed as Docker images. Images are pushed to Docker Hub tagged with plugin release 
 version and suffixed with Helm version. The image built from master branch is also available, note that it should be
 only used for playing and testing, it is **strongly discouraged** to use that image for production use cases. 
-Refer to https://hub.docker.com/r/hypnoglow/helm-s3 for details and all available tags.
+Refer to https://hub.docker.com/r/hex-inc/helm-s3 for details and all available tags.
 
 ### Note on AWS authentication
 
@@ -203,7 +203,7 @@ and others. To configure the plugin to work alternative S3 backend, just define
     $ export AWS_ENDPOINT=localhost:9000
     $ export AWS_DISABLE_SSL=true
 
-See [these integration tests](https://github.com/hypnoglow/helm-s3/blob/master/hack/integration-tests-local.sh#L10) that use local minio docker container for a complete example.
+See [these integration tests](https://github.com/hex-inc/helm-s3/blob/master/hack/integration-tests-local.sh#L10) that use local minio docker container for a complete example.
 
 ## Using S3 bucket ServerSide Encryption
 

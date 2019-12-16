@@ -6,9 +6,9 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/hypnoglow/helm-s3/internal/awss3"
-	"github.com/hypnoglow/helm-s3/internal/awsutil"
-	"github.com/hypnoglow/helm-s3/internal/helmutil"
+	"github.com/hex-inc/helm-s3/internal/awss3"
+	"github.com/hex-inc/helm-s3/internal/awsutil"
+	"github.com/hex-inc/helm-s3/internal/helmutil"
 )
 
 type reindexAction struct {

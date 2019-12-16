@@ -1,4 +1,4 @@
-PKG := github.com/hypnoglow/helm-s3
+PKG := github.com/hex-inc/helm-s3
 GO111MODULE := on
 
 .EXPORT_ALL_VARIABLES:

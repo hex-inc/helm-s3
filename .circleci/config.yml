@@ -10,7 +10,7 @@ commands:
         type: string
       image_name:
         type: string
-        default: hypnoglow/helm-s3
+        default: hex-inc/helm-s3
     steps:
       - run:
           name: Build & push Docker image
@@ -79,7 +79,7 @@ commands:
               ./cmd/helms3
 
             # Copy plugin directory to outside of the CircleCI workspace.
-            cp -r /go/src/github.com/hypnoglow/helm-s3 ${IT_TEMP_DIR}
+            cp -r /go/src/github.com/hex-inc/helm-s3 ${IT_TEMP_DIR}
 
             # Correct the plugin manifest to make installation purely local
             cd ${IT_TEMP_DIR}/helm-s3
@@ -108,12 +108,12 @@ jobs:
       - image: circleci/golang:1.12
         environment:
           GO111MODULE: "on"
-    working_directory: /go/src/github.com/hypnoglow/helm-s3
+    working_directory: /go/src/github.com/hex-inc/helm-s3
     steps:
       - checkout
       - run: make deps
       - persist_to_workspace:
-          root: /go/src/github.com/hypnoglow
+          root: /go/src/github.com/hex-inc
           paths:
             - helm-s3
   test-unit:
@@ -122,10 +122,10 @@ jobs:
         environment:
           GO111MODULE: "on"
           GOFLAGS: "-mod=vendor"
-    working_directory: /go/src/github.com/hypnoglow/helm-s3
+    working_directory: /go/src/github.com/hex-inc/helm-s3
     steps:
       - attach_workspace:
-          at: /go/src/github.com/hypnoglow
+          at: /go/src/github.com/hex-inc
       - run: ./.circleci/testcover.sh
       - run: bash <(curl -s https://codecov.io/bash)
   test-integration-helm-2_14:
@@ -145,10 +145,10 @@ jobs:
           MINIO_ACCESS_KEY: EXAMPLEKEY123
           MINIO_SECRET_KEY: EXAMPLESECRET123456
         command: ["server", "/data"]
-    working_directory: /go/src/github.com/hypnoglow/helm-s3
+    working_directory: /go/src/github.com/hex-inc/helm-s3
     steps:
       - attach_workspace:
-          at: /go/src/github.com/hypnoglow
+          at: /go/src/github.com/hex-inc
       - run_integration_tests:
           helm_version: 2.14.3
   test-integration-helm-2_15:
@@ -168,10 +168,10 @@ jobs:
           MINIO_ACCESS_KEY: EXAMPLEKEY123
           MINIO_SECRET_KEY: EXAMPLESECRET123456
         command: ["server", "/data"]
-    working_directory: /go/src/github.com/hypnoglow/helm-s3
+    working_directory: /go/src/github.com/hex-inc/helm-s3
     steps:
       - attach_workspace:
-          at: /go/src/github.com/hypnoglow
+          at: /go/src/github.com/hex-inc
       - run_integration_tests:
           helm_version: 2.15.2
   test-integration-helm-2_16:
@@ -191,10 +191,10 @@ jobs:
           MINIO_ACCESS_KEY: EXAMPLEKEY123
           MINIO_SECRET_KEY: EXAMPLESECRET123456
         command: ["server", "/data"]
-    working_directory: /go/src/github.com/hypnoglow/helm-s3
+    working_directory: /go/src/github.com/hex-inc/helm-s3
     steps:
       - attach_workspace:
-          at: /go/src/github.com/hypnoglow
+          at: /go/src/github.com/hex-inc
       - run_integration_tests:
           helm_version: 2.16.1
   test-integration-helm-3_0:
@@ -214,10 +214,10 @@ jobs:
           MINIO_ACCESS_KEY: EXAMPLEKEY123
           MINIO_SECRET_KEY: EXAMPLESECRET123456
         command: ["server", "/data"]
-    working_directory: /go/src/github.com/hypnoglow/helm-s3
+    working_directory: /go/src/github.com/hex-inc/helm-s3
     steps:
       - attach_workspace:
-          at: /go/src/github.com/hypnoglow
+          at: /go/src/github.com/hex-inc
       - run_integration_tests:
           helm_version: 3.0.0
   test-install:
@@ -248,17 +248,17 @@ jobs:
             fi
 
             echo "Check installation of version ${version}"
-            helm plugin install https://github.com/hypnoglow/helm-s3.git --version ${version}
+            helm plugin install https://github.com/hex-inc/helm-s3.git --version ${version}
   release:
     docker:
       - image: circleci/golang:1.12
         environment:
           GO111MODULE: "on"
           GOFLAGS: "-mod=vendor"
-    working_directory: /go/src/github.com/hypnoglow/helm-s3
+    working_directory: /go/src/github.com/hex-inc/helm-s3
     steps:
       - attach_workspace:
-          at: /go/src/github.com/hypnoglow
+          at: /go/src/github.com/hex-inc
       - deploy:
           name: goreleaser
           command: |

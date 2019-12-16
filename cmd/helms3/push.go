@@ -7,9 +7,9 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/hypnoglow/helm-s3/internal/awss3"
-	"github.com/hypnoglow/helm-s3/internal/awsutil"
-	"github.com/hypnoglow/helm-s3/internal/helmutil"
+	"github.com/hex-inc/helm-s3/internal/awss3"
+	"github.com/hex-inc/helm-s3/internal/awsutil"
+	"github.com/hex-inc/helm-s3/internal/helmutil"
 )
 
 var (
@@ -126,7 +126,7 @@ func (act pushAction) Run(ctx context.Context) error {
 
 	// The gap between index fetching and uploading should be as small as
 	// possible to make the best effort to avoid race conditions.
-	// See https://github.com/hypnoglow/helm-s3/issues/18 for more info.
+	// See https://github.com/hex-inc/helm-s3/issues/18 for more info.
 
 	// Fetch current index, update it and upload it back.
 

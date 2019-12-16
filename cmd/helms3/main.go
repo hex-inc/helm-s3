@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/hypnoglow/helm-s3/internal/helmutil"
+	"github.com/hex-inc/helm-s3/internal/helmutil"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
