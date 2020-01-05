@@ -139,7 +139,7 @@ func (act pushAction) Run(ctx context.Context) error {
 	if err := idx.UnmarshalBinary(b); err != nil {
 		return errors.WithMessage(err, "load index from downloaded file")
 	}
-	if err := idx.AddOrReplace(chart.Metadata().Value(), fname, repoEntry.URL(), hash); err != nil {
+	if err := idx.AddOrReplace(chart.Metadata().Value(), fname, []string{repoEntry.URL()}, hash); err != nil {
 		return errors.WithMessage(err, "add/replace chart in the index")
 	}
 	idx.SortEntries()

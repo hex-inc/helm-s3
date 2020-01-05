@@ -20,17 +20,19 @@ type IndexV2 struct {
 	index *repo.IndexFile
 }
 
-func (idx *IndexV2) Add(metadata interface{}, filename, baseURL, digest string) error {
+func (idx *IndexV2) Add(metadata interface{}, filename string, baseURLs []string, digest string) error {
 	md, ok := metadata.(*chart.Metadata)
 	if !ok {
 		return errors.New("metadata is not *chart.Metadata")
 	}
 
-	idx.index.Add(md, filename, baseURL, digest)
+	for _, baseURL := range baseURLs {
+		idx.index.Add(md, filename, baseURL, digest)
+	}
 	return nil
 }
 
-func (idx *IndexV2) AddOrReplace(metadata interface{}, filename, baseURL, digest string) error {
+func (idx *IndexV2) AddOrReplace(metadata interface{}, filename string, baseURLs []string, digest string) error {
 	// TODO: this looks like a workaround.
 	// Think how we can rework this in the future.
 	// Ref: https://github.com/kubernetes/helm/issues/3230
@@ -43,17 +45,17 @@ func (idx *IndexV2) AddOrReplace(metadata interface{}, filename, baseURL, digest
 		return errors.New("md is not *chart.Metadata")
 	}
 
-	u := filename
-	if baseURL != "" {
+	urls := make([]string, len(baseURLs))
+	for i, baseURL := range baseURLs {
 		var err error
 		_, file := filepath.Split(filename)
-		u, err = urlutil.URLJoin(baseURL, file)
+		urls[i], err = urlutil.URLJoin(baseURL, file)
 		if err != nil {
-			u = filepath.Join(baseURL, file)
+			urls[i] = filepath.Join(baseURL, file)
 		}
 	}
 	cr := &repo.ChartVersion{
-		URLs:     []string{u},
+		URLs:     urls,
 		Metadata: md,
 		Digest:   digest,
 		Created:  time.Now(),

@@ -10,7 +10,7 @@ type Index interface {
 	// Add adds chart version to the index.
 	//
 	// Note: this can leave the index in an unsorted state.
-	Add(metadata interface{}, filename, baseURL, digest string) error
+	Add(metadata interface{}, filename string, baseURLs []string, digest string) error
 
 	// AddOrReplace adds chart version to the index, replacing the version if it exists instead
 	// of adding it to the list of versions. Note that helm Add method does not control whether
@@ -18,7 +18,7 @@ type Index interface {
 	// by replacing the chart.
 	//
 	// Note: this can leave the index in an unsorted state.
-	AddOrReplace(metadata interface{}, filename, baseURL, digest string) error
+	AddOrReplace(metadata interface{}, filename string, baseURLs []string, digest string) error
 
 	// Delete removes chart version from the index and returns url to the deleted item.
 	Delete(name, version string) (url string, err error)

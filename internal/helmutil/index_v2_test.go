@@ -52,12 +52,13 @@ func TestIndexV2_AddOrReplace(t *testing.T) {
 				Version: "0.1.0",
 			},
 			"foo-0.1.0.tgz",
-			"http://example.com/charts",
+			[]string{"http://example.com/charts", "http://example2.com/charts"},
 			"sha256:1234567890",
 		)
 		require.NoError(t, err)
 
 		assert.Equal(t, "http://example.com/charts/foo-0.1.0.tgz", i.index.Entries["foo"][0].URLs[0])
+		assert.Equal(t, "http://example2.com/charts/foo-0.1.0.tgz", i.index.Entries["foo"][0].URLs[1])
 	})
 
 	t.Run("should add a new version of a chart", func(t *testing.T) {
@@ -69,7 +70,7 @@ func TestIndexV2_AddOrReplace(t *testing.T) {
 				Version: "0.1.0",
 			},
 			"foo-0.1.0.tgz",
-			"http://example.com/charts",
+			[]string{"http://example.com/charts"},
 			"sha256:111",
 		)
 		require.NoError(t, err)
@@ -80,7 +81,7 @@ func TestIndexV2_AddOrReplace(t *testing.T) {
 				Version: "0.1.1",
 			},
 			"foo-0.1.1.tgz",
-			"http://example.com/charts",
+			[]string{"http://example.com/charts"},
 			"sha256:222",
 		)
 		require.NoError(t, err)
@@ -100,7 +101,7 @@ func TestIndexV2_AddOrReplace(t *testing.T) {
 				Version: "0.1.0",
 			},
 			"foo-0.1.0.tgz",
-			"http://example.com/charts",
+			[]string{"http://example.com/charts"},
 			"sha256:111",
 		)
 		require.NoError(t, err)
@@ -111,7 +112,7 @@ func TestIndexV2_AddOrReplace(t *testing.T) {
 				Version: "0.1.0",
 			},
 			"foo-0.1.0.tgz",
-			"http://example.com/charts",
+			[]string{"http://example.com/charts"},
 			"sha256:222",
 		)
 		require.NoError(t, err)
